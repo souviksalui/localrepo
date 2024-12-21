@@ -1,0 +1,14 @@
+https://medium.com/@prateekgaurav/data-analytics-end-to-end-project-a-guide-to-beginners-in-data-analytics-ad7a8dad9b26
+
+https://www.aleaitsolutions.com/unveiling-the-power-of-postman-and-docker-essential-tools-for-modern-developers/#:~:text=With%20Docker%2C%20deployment%20becomes%20as,and%20deploy%20applications%20with%20ease.
+
+https://services.india.gov.in/service/detail/access-open-data-apis-from-open-government-data-platform-ogd-india
+
+https://www.data.gov.in/apis?page=2
+
+https://www.data.gov.in/resource/monthly-consumption-petroleum-products
+
+https://elibenjamin.medium.com/data-engineering-automatically-update-postgresql-database-from-api-4f07da1df2a9
+
+https://www.timescale.com/blog/select-the-most-recent-record-of-many-items-with-postgresql
+
