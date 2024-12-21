@@ -1,0 +1,111 @@
+This Java code is designed to write data to an Excel file (.xlsx) using the Apache POI library. Here's a breakdown of the code:
+
+Main Class:
+
+The ExcelWriter class has a main method that creates a LinkedHashMap to store data, where the keys are column headers and the values are the corresponding data.
+The main method calls the writeToExcel method to write the data to an Excel file.
+writeToExcel Method:
+
+This method takes a Map of data, a file path, and a file name as parameters.
+It creates a new Excel file with the specified name and path, and deletes any existing file with the same name.
+It creates a new XSSFWorkbook and XSSFSheet to write the data to.
+It extracts the headers and data from the Map and stores them in separate lists.
+It calls the setHeadersAndFillData method to write the headers and data to the Excel sheet.
+setHeadersAndFillData Method:
+
+This method takes an XSSFSheet, a list of headers, and a list of data as parameters.
+It creates a new row for the headers and a new row for the data.
+It calls the setCells method to write the headers and data to the corresponding rows.
+setCells Method:
+
+This method takes a list of cell data, the number of headers, and a Row object as parameters.
+It creates a new cell for each piece of data and sets its value.
+Rectification for VS Code:
+
+To run this code in VS Code, you'll need to make the following changes:
+
+Add Apache POI dependencies: Add the following dependencies to your pom.xml file (if you're using Maven) or your build.gradle file (if you're using Gradle):
+xml
+CopyInsert
+<!-- Maven -->
+<dependency>
+  <groupId>org.apache.poi</groupId>
+  <artifactId>poi</artifactId>
+  <version>5.2.2</version>
+</dependency>
+<dependency>
+  <groupId>org.apache.poi</groupId>
+  <artifactId>poi-ooxml</artifactId>
+  <version>5.2.2</version>
+</dependency>
+
+<!-- Gradle -->
+dependencies {
+  implementation 'org.apache.poi:poi:5.2.2'
+  implementation 'org.apache.poi:poi-ooxml:5.2.2'
+}
+Update the file path: Update the file path in the main method to a valid path on your system.
+Use the correct Java version: Make sure you're using a compatible Java version (e.g., Java 11 or later) to run the code.
+Run the code: Run the code using the java command or by clicking the "Run" button in VS Code.
+Here's the updated code:
+
+java
+CopyInsert
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+
+public class ExcelWriter {
+    public static void main(String[] args) throws IOException {
+        // Update the file path
+        String filePath = "path/to/your/file.xlsx";
+        String fileName = "demo-data";
+
+        // Create a new Excel file
+        File file = new File(filePath);
+        if (file.exists()) {
+            file.delete();
+        }
+        file.createNewFile();
+
+        // Create a new XSSFWorkbook and XSSFSheet
+        Workbook workbook = new XSSFWorkbook();
+        Sheet sheet = workbook.createSheet();
+
+        // Create a new LinkedHashMap to store data
+        Map<String, String> dataMap = new LinkedHashMap<>();
+        dataMap.put("AN_Rate", "Data-1");
+        dataMap.put("BN_Rate", "Data-2");
+        dataMap.put("CN_Rate", "Data-3");
+
+        // Write data to the Excel sheet
+        writeToExcel(dataMap, sheet);
+
+        // Write the workbook to the file
+        try (FileOutputStream fos = new FileOutputStream(file)) {
+            workbook.write(fos);
+        }
+    }
+
+    public static void writeToExcel(Map<String, String> dataMap, Sheet sheet) {
+        // Extract headers and data from the map
+        List<String> headers = new ArrayList<>(dataMap.keySet());
+        List<String> data = new ArrayList<>(dataMap.values());
+
+        // Create a new row for the headers
+        Row headerRow = sheet.createRow(0);
+        setCells(headers, headerRow);
+
+        // Create a new row for the data
+        Row dataRow = sheet.createRow(1);
+       
